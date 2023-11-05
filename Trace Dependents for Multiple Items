@@ -1,0 +1,14 @@
+Sub TraceDependentsMultipleItems()
+'Modified and Fixed by Joel Jose
+    Dim xRg As Range
+    Dim xCell As Range
+    Dim xTxt As String
+    On Error Resume Next
+    xTxt = ActiveWindow.RangeSelection.Address
+    Set xRg = Application.InputBox("Please select the data range:", "Joel's Audit tools for Excel", xTxt, , , , , 8)
+    Set xRg = xRg.Union(ActiveSheet.UsedRange)
+    If xRg Is Nothing Then Exit Sub
+    For Each xCell In xRg
+        xCell.ShowDependents
+    Next
+End Sub
